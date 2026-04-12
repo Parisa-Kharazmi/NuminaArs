@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NuminaArs — Analogy as a Method of Discovery and Innovation in Mathematics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#8B7355;
+  --gold-light:#A89070;
+  --gold-pale:#f0ede8;
+  --ink:#0d0d0d;
+  --ink-mid:#1c1c1c;
+  --ink-soft:#3a3a3a;
+  --parchment:#f9f8f6;
+  --parchment-dark:#eeecea;
+  --line:rgba(0,0,0,0.09);
+  --line-strong:rgba(0,0,0,0.18);
+  --white:#ffffff;
+  --cream:#EDEAE3;
+  --cream-surface:#E4E0D8;
+  --cream-surface2:#DDD9D1;
+  --cream-border:rgba(0,0,0,0.08);
+  --cream-border-gold:rgba(139,115,85,0.3);
+  --cream-text:rgba(20,18,14,0.78);
+  --cream-text-dim:rgba(20,18,14,0.52);
+  --cream-text-bright:rgba(20,18,14,0.92);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:"EB Garamond",Georgia,serif;background:var(--parchment);color:var(--ink);font-size:18px;line-height:1.75;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(237,234,227,0.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--cream-border-gold);padding:0 3rem;height:64px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:"Cinzel",serif;font-size:18px;letter-spacing:0.12em;color:var(--gold);text-decoration:none;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-family:"Jost",sans-serif;font-size:14px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--gold);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8rem 3rem 6rem;position:relative;overflow:hidden;background:var(--cream);}
+.hero-geo{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:750px;height:750px;opacity:0.18;pointer-events:none;}
+.hero-label{font-family:"Jost",sans-serif;font-size:14px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;}
+.hero h1{font-family:"Cinzel",serif;font-size:clamp(3rem,7vw,6rem);font-weight:400;letter-spacing:0.08em;color:var(--ink);line-height:1.1;margin-bottom:1rem;}
+.hero-tech{font-family:"Jost",sans-serif;font-size:15px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);opacity:1;margin-bottom:1.25rem;}
+.hero-divider{width:80px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 1.5rem;}
+.hero-subtitle{font-family:"Cormorant Garamond",serif;font-size:clamp(1.2rem,2.5vw,1.65rem);font-style:italic;font-weight:300;color:var(--ink-soft);max-width:700px;line-height:1.65;margin-bottom:3.5rem;}
+.hero-cta{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;}
+.btn{font-family:"Jost",sans-serif;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;padding:0.9rem 2.5rem;border:1px solid;transition:all 0.25s;cursor:pointer;display:inline-block;}
+.btn-primary{background:var(--gold);border-color:var(--gold);color:#fff;}
+.btn-primary:hover{background:transparent;color:var(--gold);border-color:var(--gold);}
+.btn-secondary{background:transparent;border-color:rgba(0,0,0,0.25);color:var(--ink-soft);}
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold);}
+
+/* SHARED */
+section{padding:7rem 3rem;}
+.container-wide{max-width:1100px;margin:0 auto;}
+.section-label{font-family:"Jost",sans-serif;font-size:14px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;}
+.section-title{font-family:"Cinzel",serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;letter-spacing:0.04em;color:var(--ink);margin-bottom:0.75rem;line-height:1.25;}
+.section-rule{width:50px;height:1px;background:var(--gold);margin-bottom:2.5rem;}
+
+/* ANALOGY — first section after hero, full two-column */
+#analogy{background:var(--parchment-dark);border-bottom:1px solid var(--line);padding:4.5rem 3rem;}
+.analogy-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;max-width:1100px;margin:0 auto;}
+.analogy-header{height:130px;display:flex;flex-direction:column;justify-content:flex-start;}
+#analogy .section-label{margin-bottom:0.4rem;}
+#analogy .section-title{margin-bottom:0.6rem;font-size:clamp(1.4rem,2.5vw,1.9rem);}
+#analogy .section-rule{margin-bottom:0;}
+.etym-item{display:flex;flex-direction:column;gap:0.2rem;}
+.etym-label{font-family:"Jost",sans-serif;font-size:14px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);}
+.etym-word{font-family:"Cormorant Garamond",serif;font-size:18px;font-style:italic;color:var(--ink);}
+.analogy-body-text{font-size:17px;color:var(--ink-mid);line-height:1.85;margin-bottom:1.25rem;}
+.chain-col{display:flex;flex-direction:column;gap:0;margin-top:2rem;max-width:320px;}
+.chain-box{background:var(--cream-surface);color:var(--ink);padding:0.75rem 1.25rem;font-family:"Jost",sans-serif;font-size:14px;letter-spacing:0.06em;border:1px solid var(--cream-border-gold);display:flex;align-items:center;justify-content:space-between;}
+.chain-box + .chain-box{border-top:none;}
+.chain-arr-down{font-size:16px;color:var(--gold);text-align:center;padding:0.2rem 0;border-left:1px solid var(--cream-border-gold);border-right:1px solid var(--cream-border-gold);background:transparent;display:block;width:100%;max-width:320px;}
+
+.etym-block{display:inline-flex;gap:2.5rem;background:var(--cream-surface);padding:1.1rem 1.75rem;margin-top:1.5rem;margin-bottom:1.75rem;border:1px solid var(--cream-border-gold);}
+/* CONCEPT CARDS — single column, improved shape */
+.analogy-concepts{display:flex;flex-direction:column;gap:1.75rem;padding-top:0;}
+#analogy .section-rule{margin-bottom:0;}
+.concept-card{padding:2rem 2.25rem;border:1px solid var(--cream-border-gold);background:var(--cream-surface);position:relative;border-radius:2px;}
+.concept-card::before{content:"";position:absolute;top:0;left:0;width:3px;height:100%;background:var(--gold);}
+.concept-card h3{font-family:"Cinzel",serif;font-size:17px;font-weight:400;letter-spacing:0.04em;color:var(--ink);margin-bottom:0.75rem;}
+.concept-card p{font-size:16px;color:var(--ink-soft);line-height:1.8;}
+.concept-card .source{font-size:13px;color:var(--gold);font-style:italic;margin-top:0.75rem;display:block;line-height:1.5;}
+
+/* OVERVIEW (What is NuminaArs) — second section */
+#overview{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;max-width:1100px;margin:0 auto;}
+.overview-text p{font-size:17px;color:var(--ink-mid);margin-bottom:1.25rem;line-height:1.85;}
+.overview-quote{border-left:2px solid var(--gold);padding:1.5rem 2rem;background:var(--gold-pale);margin-top:2rem;}
+.overview-quote p{font-family:"Cormorant Garamond",serif;font-size:19px;font-style:italic;color:var(--ink);margin:0;line-height:1.65;}
+.pillar-card{padding:1.75rem 2.25rem;border:1px solid var(--cream-border-gold);background:var(--cream-surface);position:relative;margin-bottom:1.75rem;border-radius:2px;}
+.pillar-card:last-child{margin-bottom:0;}
+.pillar-card::before{content:"";position:absolute;top:0;left:0;width:3px;height:100%;background:var(--gold);}
+.pillar-card h3{font-family:"Cinzel",serif;font-size:17px;font-weight:400;color:var(--ink);margin-bottom:0.65rem;letter-spacing:0.04em;}
+.pillar-card p{font-size:16px;color:var(--ink-soft);line-height:1.8;}
+
+/* GAP / THE CHALLENGE — black background, five challenges */
+#gap{background:#0d0d0d;padding:7rem 3rem;}
+.gap-full{max-width:1100px;margin:0 auto 4rem;}
+.gap-main-title{font-family:"Cinzel",serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:400;color:#fff;letter-spacing:0.04em;line-height:1.2;margin-bottom:0.75rem;}
+.gap-intro{font-size:19px;color:rgba(255,255,255,0.65);line-height:1.85;max-width:100%;margin-top:1.5rem;}
+.gap-challenges{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:0;}
+.gap-challenge-item{display:grid;grid-template-columns:80px 1fr;gap:2.5rem;align-items:start;padding:2.5rem 0;border-bottom:1px solid rgba(255,255,255,0.07);}
+.gap-challenge-item:last-child{border-bottom:none;}
+.gap-challenge-num{font-family:"Cinzel",serif;font-size:2rem;color:rgba(139,115,85,0.35);line-height:1;padding-top:0.3rem;}
+.gap-challenge-body h3{font-family:"Cinzel",serif;font-size:1.15rem;font-weight:400;color:var(--gold-light);letter-spacing:0.04em;margin-bottom:0.85rem;line-height:1.3;}
+.gap-challenge-body p{font-size:17px;color:rgba(255,255,255,0.65);line-height:1.85;}
+.gap-challenge-body p em{color:rgba(255,255,255,0.88);font-style:italic;}
+#gap .section-label{color:var(--gold-light);}
+
+/* MACTUTOR */
+#mactutor{background:var(--cream);padding:4.5rem 3rem;border-top:1px solid var(--cream-border-gold);border-bottom:1px solid var(--cream-border-gold);}
+.mactutor-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:260px 1fr;gap:4rem;align-items:center;}
+.mactutor-label{font-family:"Jost",sans-serif;font-size:14px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;}
+.mactutor-heading{font-family:"Cinzel",serif;font-size:20px;color:var(--ink);line-height:1.35;}
+.mactutor-text{font-size:17px;color:var(--ink-mid);line-height:1.85;}
+.mactutor-text strong{color:var(--gold);font-weight:500;}
+.mactutor-text em{color:var(--ink-soft);}
+
+/* SCOPE — black title area, creamy boxes */
+#scope{background:#0d0d0d;padding:6rem 3rem;}
+.scope-header{max-width:1100px;margin:0 auto 3rem;}
+#scope .section-label{color:var(--gold-light);}
+#scope .section-title{color:#fff;}
+#scope .section-rule{background:var(--gold);}
+.scope-intro{font-size:19px;color:rgba(255,255,255,0.78);width:100%;max-width:100%;margin-bottom:0;line-height:1.9;}
+.scope-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;max-width:1100px;margin:0 auto;background:var(--cream-border-gold);border:1px solid var(--cream-border-gold);}
+.scope-item{padding:2.25rem 2rem;background:var(--cream-surface);transition:background 0.2s;}
+.scope-item:hover{background:var(--cream);}
+.scope-num{font-family:"Cinzel",serif;font-size:2.2rem;color:rgba(139,115,85,0.3);line-height:1;margin-bottom:0.75rem;}
+.scope-label{font-family:"Jost",sans-serif;font-size:14px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:0.65rem;}
+.scope-desc{font-size:16px;color:var(--cream-text-dim);line-height:1.75;}
+
+/* STUDIES */
+#studies{background:var(--parchment);}
+.studies-intro{font-size:18px;color:var(--ink-soft);width:100%;max-width:100%;margin-bottom:1.5rem;line-height:1.85;}
+.primary-note{background:var(--cream-surface);border-left:3px solid var(--gold);padding:2rem 2.5rem;margin-bottom:4rem;width:100%;}
+.primary-note p{font-family:"Cormorant Garamond",serif;font-size:21px;font-style:italic;font-weight:600;color:var(--ink);line-height:1.75;margin:0;}
+.study-block{margin-bottom:5rem;padding-bottom:5rem;border-bottom:1px solid var(--line-strong);}
+.study-block:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.study-header{display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:start;margin-bottom:2.5rem;}
+.study-number{font-family:"Cinzel",serif;font-size:4rem;font-weight:400;color:rgba(0,0,0,0.06);line-height:1;padding-top:0.3rem;}
+.study-tag{font-family:"Jost",sans-serif;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft);background:var(--cream-surface);padding:4px 12px;display:inline-block;margin-bottom:0.65rem;border:1px solid var(--cream-border-gold);}
+.study-title{font-family:"Cinzel",serif;font-size:1.5rem;font-weight:400;color:var(--ink);margin-bottom:0.4rem;letter-spacing:0.03em;line-height:1.35;}
+.study-subtitle{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:17px;color:var(--ink-soft);}
+.study-body{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.study-text p{color:var(--ink-mid);margin-bottom:1.1rem;font-size:16px;line-height:1.85;}
+.study-highlight{background:var(--gold-pale);border:1px solid rgba(0,0,0,0.1);padding:1.5rem 1.75rem;margin-top:1.5rem;}
+.study-highlight-label{font-family:"Jost",sans-serif;font-size:14px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;}
+.study-highlight p{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:19px;color:var(--ink-mid);margin:0;line-height:1.7;}
+.study-diagram{background:var(--cream-surface);border:1px solid var(--cream-border-gold);padding:2rem;display:flex;flex-direction:column;gap:1rem;}
+.diagram-title{font-family:"Jost",sans-serif;font-size:14px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-soft);padding-bottom:0.75rem;border-bottom:1px solid var(--cream-border-gold);}
+.a-chain{display:flex;flex-direction:column;gap:0.75rem;}
+.a-node{padding:0.85rem 1.1rem;border-left:2px solid var(--gold);background:var(--cream-surface2);}
+.a-node-name{font-family:"Jost",sans-serif;font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink);font-weight:500;margin-bottom:4px;}
+.a-node-desc{font-size:15px;color:var(--cream-text-dim);line-height:1.55;}
+.a-arrow{text-align:center;font-size:14px;color:var(--gold);font-family:"Jost",sans-serif;letter-spacing:0.1em;}
+.a-bridge{background:rgba(139,115,85,0.12);border:1px solid var(--cream-border-gold);padding:0.85rem 1.1rem;text-align:center;}
+.a-bridge-label{font-family:"Jost",sans-serif;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.a-bridge-desc{font-size:15px;color:var(--ink-mid);font-style:italic;font-family:"Cormorant Garamond",serif;line-height:1.55;}
+
+/* AUDIENCE */
+#audience{background:var(--parchment-dark);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.audience-intro{font-size:18px;color:var(--ink-soft);width:100%;max-width:100%;margin-bottom:3rem;line-height:1.85;}
+.audience-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line-strong);}
+.audience-card{background:var(--white);padding:2rem 1.6rem;transition:background 0.2s;}
+.audience-card:hover{background:var(--gold-pale);}
+.audience-icon{width:40px;height:40px;border:1px solid var(--line-strong);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;}
+.audience-icon svg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:1.5;}
+.audience-card h3{font-family:"Cinzel",serif;font-size:15px;font-weight:400;color:var(--ink);margin-bottom:0.6rem;letter-spacing:0.03em;line-height:1.3;}
+.audience-card p{font-size:15px;color:var(--ink-soft);line-height:1.65;}
+
+/* VISION */
+#vision{background:var(--white);border-top:1px solid var(--line);}
+.vision-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;margin-top:2.5rem;}
+.vision-text p{font-size:17px;color:var(--ink-mid);margin-bottom:1.1rem;line-height:1.85;}
+.vision-steps{display:flex;flex-direction:column;}
+.vision-step{display:grid;grid-template-columns:44px 1fr;gap:1rem;padding:1.25rem 0;border-bottom:1px solid var(--line-strong);}
+.vision-step:last-child{border-bottom:none;}
+.vision-step-num{font-family:"Cinzel",serif;font-size:15px;color:var(--gold);padding-top:3px;}
+.vision-step-text{font-size:16px;color:var(--ink-mid);line-height:1.7;}
+.vision-step-text strong{font-weight:600;color:var(--ink);display:block;font-size:17px;font-family:"EB Garamond",serif;margin-bottom:0.25rem;}
+
+/* COMMUNITY */
+#community{background:var(--cream);padding:6rem 3rem;}
+#community .section-title{color:var(--ink);}
+#community .section-label{color:var(--gold);}
+.community-intro{font-size:18px;color:var(--cream-text);width:100%;max-width:100%;margin-bottom:3rem;line-height:1.85;}
+.community-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--cream-border-gold);}
+.community-item{padding:2rem 1.75rem;background:var(--cream-surface);}
+.community-item h3{font-family:"Cinzel",serif;font-size:16px;font-weight:400;color:var(--ink);margin-bottom:0.75rem;letter-spacing:0.04em;}
+.community-item p{font-size:16px;color:var(--cream-text-dim);line-height:1.75;}
+
+/* ABOUT */
+#about{background:var(--parchment-dark);padding:7rem 3rem;border-top:1px solid var(--line);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;max-width:1100px;margin:2rem auto 3rem;}
+.about-text p{font-size:17px;color:var(--ink-mid);margin-bottom:1.1rem;line-height:1.85;}
+.about-notice{border:1px solid var(--cream-border-gold);padding:2rem 3rem;background:var(--cream-surface);max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:3rem;}
+.about-notice-label{font-family:"Jost",sans-serif;font-size:14px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);white-space:nowrap;flex-shrink:0;border-right:1px solid var(--cream-border-gold);padding-right:3rem;}
+.about-notice p{font-size:16px;color:var(--ink-mid);line-height:1.8;margin:0;}
+
+/* FOOTER */
+footer{background:var(--cream);border-top:1px solid var(--cream-border-gold);padding:3rem;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:2rem;}
+.footer-logo{font-family:"Cinzel",serif;font-size:18px;letter-spacing:0.1em;color:var(--gold);display:block;margin-bottom:0.4rem;text-decoration:none;}
+.footer-tag{font-size:15px;color:var(--ink-soft);font-family:"Jost",sans-serif;letter-spacing:0.05em;}
+.footer-right{text-align:right;}
+.footer-name{font-family:"Cormorant Garamond",serif;font-size:18px;font-style:italic;color:var(--ink-mid);display:block;margin-bottom:0.25rem;}
+.footer-role{font-size:14px;color:var(--ink-soft);font-family:"Jost",sans-serif;letter-spacing:0.05em;}
+.footer-links{margin-top:0.6rem;display:flex;align-items:center;gap:0.5rem;justify-content:flex-end;}
+.footer-link{font-family:"Jost",sans-serif;font-size:13px;letter-spacing:0.08em;color:var(--gold);text-decoration:none;text-transform:uppercase;transition:color 0.2s;}
+.footer-link:hover{color:var(--ink);}
+.footer-link-sep{color:var(--cream-text-dim);font-size:13px;}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+@media(max-width:900px){
+  nav{padding:0 1.5rem;}.nav-links{display:none;}
+  section{padding:5rem 1.5rem;}
+  #scope,#community,#gap,#mactutor,#about{padding:5rem 1.5rem;}
+  footer{padding:2.5rem 1.5rem;}
+  .hero{padding:7rem 1.5rem 5rem;}.hero h1{font-size:2.8rem;}
+  .gap-challenge-item{grid-template-columns:50px 1fr;gap:1.5rem;}
+  .gap-challenge-num{font-size:1.5rem;}
+  .overview-grid,.study-body,.vision-grid,.about-grid,.mactutor-inner,.analogy-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .study-header{grid-template-columns:1fr;gap:0.5rem;}.study-number{font-size:2.5rem;}
+  .scope-grid{grid-template-columns:repeat(2,1fr);}
+  .audience-grid{grid-template-columns:repeat(2,1fr);}
+  .community-grid{grid-template-columns:1fr;}
+  .footer-inner{flex-direction:column;align-items:flex-start;}.footer-right{text-align:left;}
+  .about-notice{flex-direction:column;gap:1.5rem;}.about-notice-label{border-right:none;border-bottom:1px solid var(--cream-border-gold);padding-right:0;padding-bottom:1rem;}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="#" class="nav-logo">NuminaArs</a>
+  <ul class="nav-links">
+    <li><a href="#analogy">Analogy</a></li>
+    <li><a href="#overview">The Project</a></li>
+    <li><a href="#scope">Scope</a></li>
+    <li><a href="#studies">Case Studies</a></li>
+    <li><a href="#audience">Who It Serves</a></li>
+    <li><a href="#vision">Vision</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="hero-geo" viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="350" cy="350" r="280" fill="none" stroke="#8B7355" stroke-width="0.5"/>
+    <circle cx="350" cy="350" r="200" fill="none" stroke="#8B7355" stroke-width="0.5"/>
+    <circle cx="350" cy="350" r="120" fill="none" stroke="#8B7355" stroke-width="0.5"/>
+    <polygon points="350,70 565,192 608,435 476,626 224,626 92,435 135,192" fill="none" stroke="#8B7355" stroke-width="0.8"/>
+    <polygon points="350,150 526,278 461,481 239,481 174,278" fill="none" stroke="#8B7355" stroke-width="0.5"/>
+    <line x1="350" y1="70" x2="476" y2="626" stroke="#8B7355" stroke-width="0.3"/>
+    <line x1="565" y1="192" x2="224" y2="626" stroke="#8B7355" stroke-width="0.3"/>
+    <line x1="608" y1="435" x2="135" y2="192" stroke="#8B7355" stroke-width="0.3"/>
+    <polygon points="350,70 608,435 224,626" fill="rgba(139,115,85,0.05)" stroke="#8B7355" stroke-width="1"/>
+    <circle cx="350" cy="350" r="4" fill="#8B7355"/>
+  </svg>
+  <p class="hero-label">Discovery &nbsp;&middot;&nbsp; Innovation &nbsp;&middot;&nbsp; Mathematics</p>
+  <h1>NuminaArs</h1>
+  <p class="hero-tech">Re-Tech &nbsp;&middot;&nbsp; Ed-Tech &nbsp;&middot;&nbsp; Cul-Tech</p>
+  <div class="hero-divider"></div>
+  <p class="hero-subtitle">Analogy as a method of discovery and innovation in mathematics &mdash; a living framework for understanding how humans solve problems across cultures, disciplines, and time</p>
+  <div class="hero-cta">
+    <a href="#analogy" class="btn btn-primary">What is Analogy?</a>
+    <a href="#overview" class="btn btn-secondary">What is NuminaArs?</a>
+  </div>
+</section>
+
+<!-- 1. ANALOGY — first after hero -->
+<section id="analogy">
+  <div class="container-wide">
+    <div class="analogy-grid">
+      <div class="reveal">
+        <div class="analogy-header">
+          <p class="section-label">Foundation</p>
+          <h2 class="section-title">What is Analogy?</h2>
+          <div class="section-rule"></div>
+        </div>
+        <div class="etym-block">
+          <div class="etym-item"><span class="etym-label">Greek</span><span class="etym-word">&#7936;&#957;&#940;&#955;&#959;&#947;&#959;&#962; &mdash; analogos</span></div>
+          <div class="etym-item"><span class="etym-label">Derived</span><span class="etym-word">&#7936;&#957;&#945;&#955;&#959;&#947;&#943;&#945; &mdash; analogia</span></div>
+        </div>
+        <p class="analogy-body-text"><strong>Analogy</strong> is a method of discovery and creativity. It focuses on how two pre-existing ideas can be brought into correspondence through a change or transformation &mdash; revealing a shared relational structure that points toward a solution.</p>
+        <p class="analogy-body-text">In Greek mathematics, analogy expressed the equality of ratios: <strong>a:b = c:d</strong>. In constructive geometry, it means using a known construction to approach an unknown problem &mdash; carrying the logic of the understood into what is not yet solved.</p>
+        <p class="analogy-body-text">Analogical reasoning drives creative transformation of existing ideas, leading to new procedures, new constructions, and new understanding. As P&oacute;lya observed, it is one of the fundamental engines of mathematical discovery.</p>
+        <div class="chain-col">
+          <div class="chain-box">Analogical Thinking <span style="color:var(--gold);">↓</span></div>
+          <div class="chain-box">Analogical Reasoning <span style="color:var(--gold);">↓</span></div>
+          <div class="chain-box">Analogical Argument <span style="color:var(--gold);">↓</span></div>
+          <div class="chain-box">Discovery</div>
+        </div>
+      </div>
+      <div class="analogy-concepts reveal">
+        <div class="analogy-header">
+          <p class="section-label">Key Concepts</p>
+          <h2 class="section-title">Three Levels of Analysis</h2>
+          <div class="section-rule"></div>
+        </div>
+        <div class="concept-card">
+          <h3>Analogy as Method</h3>
+          <p>A precise transfer of relational structure from a known construction to a new problem. Through this transfer, existing mathematical knowledge becomes a generative resource &mdash; producing new procedures where direct methods have failed.</p>
+        </div>
+        <div class="concept-card">
+          <h3>Meta-Analogy</h3>
+          <p>The comparison of analogical procedures themselves. When two scholars in different traditions generate new constructions through the same kind of transformation &mdash; independently, under the same constraint &mdash; this is meta-analogy: the recurring architecture of mathematical reasoning.</p>
+          <span class="source">Hofstadter (1995): Meta-analogies are analogies between analogies. &nbsp;&nbsp; Burns (1996): Meta-analogies are a form of learning from analogies.</span>
+        </div>
+        <div class="concept-card">
+          <h3>Discovery Without Direct Transmission</h3>
+          <p>Many correspondences studied here do not require historical contact between traditions. Convergence arises from shared tools, foundational knowledge, and shared constraints. This is what makes the analogy structurally significant &mdash; and what makes NuminaArs genuinely innovative.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. OVERVIEW — What is NuminaArs / Three Pillars -->
+<section id="overview">
+  <div class="container-wide">
+    <div class="overview-grid">
+      <div class="overview-text reveal">
+        <p class="section-label">The Project</p>
+        <h2 class="section-title">What is NuminaArs?</h2>
+        <div class="section-rule"></div>
+        <p>NuminaArs is a research and innovation project in the history, philosophy, and education of mathematics. It is a cutting-edge investigation of analogy as a method of discovery and problem-solving &mdash; studying how practitioners across history have found solutions to problems that could not be solved directly, by transforming and extending what they already knew.</p>
+        <p>Mathematics is too often presented as a sequence of fixed results. NuminaArs shifts attention to the process of formation: how new constructions emerge, how methods are adapted under constraint, and how different traditions develop comparable strategies independently.</p>
+        <p>The project draws no boundaries of time, geography, or discipline. It moves between geometry, algebra, computation, and art &mdash; allowing connections to emerge wherever genuine analogical reasoning appears.</p>
+        <div class="overview-quote">
+          <p>The aim of NuminaArs is to build an innovative, applicable method for understanding mathematical discovery &mdash; making the deep logic of problem-solving visible, teachable, and useful for learners, researchers, and innovators today.</p>
+        </div>
+      </div>
+      <div class="reveal">
+        <p class="section-label">How It Works</p>
+        <h2 class="section-title">Three Pillars</h2>
+        <div class="section-rule"></div>
+        <div class="pillar-card">
+          <h3>Case Study Research</h3>
+          <p>Each case study examines a precise moment where analogy served as the instrument of discovery &mdash; where a known structure was transformed to meet a new constraint, generating new mathematical knowledge.</p>
+        </div>
+        <div class="pillar-card">
+          <h3>Analytical Framework</h3>
+          <p>NuminaArs develops a systematic method for identifying, comparing, and teaching analogical procedures &mdash; moving toward a formal, applicable framework for education and research.</p>
+        </div>
+        <div class="pillar-card">
+          <h3>Educational Application</h3>
+          <p>The project bridges history and practice. Its findings are designed to be applicable &mdash; in classrooms, in research settings, and in mathematical Ed-Tech &mdash; making problem-solving by analogy an explicit and learnable skill.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. THE CHALLENGE — black background, full five challenges -->
+<section id="gap">
+  <div class="gap-full reveal">
+    <p class="section-label" style="color:var(--gold-light);">The Challenge</p>
+    <h2 class="gap-main-title">Five Interconnected Challenges</h2>
+    <div class="section-rule"></div>
+    <p class="gap-intro">NuminaArs confronts several interconnected challenges &mdash; in scholarship, methodology, technology, and education. Each is real, and each shapes the direction of the project.</p>
+  </div>
+  <div class="gap-challenges reveal">
+    <div class="gap-challenge-item">
+      <div class="gap-challenge-num">I</div>
+      <div class="gap-challenge-body">
+        <h3>The Missing Dimension in Mathematical History</h3>
+        <p>The history of mathematics has documented what was discovered, and by whom. What it has rarely asked is <em>how</em> &mdash; through what process of reasoning did a discovery become possible. The procedural and analogical dimension of mathematical thinking is almost entirely absent from the literature. NuminaArs exists to fill that gap.</p>
+      </div>
+    </div>
+    <div class="gap-challenge-item">
+      <div class="gap-challenge-num">II</div>
+      <div class="gap-challenge-body">
+        <h3>What AI Cannot Do</h3>
+        <p>Artificial intelligence can retrieve, recombine, and pattern-match mathematical knowledge at remarkable speed. Yet it cannot replicate what Archimedes did, what Abu al-Wafa&apos; did, what D&uuml;rer did &mdash; reach across from the known into the unknown through a moment of genuine analogical insight. In the history and philosophy of mathematics, AI-generated responses are often plausible but unreliable. They lack the depth of reasoning, the sensitivity to historical context, and the creative human capacity for analogical discovery that serious investigation requires.</p>
+      </div>
+    </div>
+    <div class="gap-challenge-item">
+      <div class="gap-challenge-num">III</div>
+      <div class="gap-challenge-body">
+        <h3>AI as Critical Partner &mdash; A New Methodological Challenge</h3>
+        <p>NuminaArs does not reject AI &mdash; it uses it rigorously. After each stage of human investigation, AI is invited as a critical interlocutor. It may suggest connections the human researcher has not seen, propose extensions to existing discoveries, or identify weaknesses and potential errors in the analysis. But its contributions are never accepted uncritically. AI can be wrong. It can introduce errors, reinforce false patterns, or miss the historical nuance that the human scholarship has established. The challenge is not whether to use AI, but <em>how</em> &mdash; with discipline, scepticism, and full awareness of its limitations.</p>
+      </div>
+    </div>
+    <div class="gap-challenge-item">
+      <div class="gap-challenge-num">IV</div>
+      <div class="gap-challenge-body">
+        <h3>Transmission Across Cultures and Time</h3>
+        <p>Mathematical knowledge does not travel unchanged. As ideas move from Greek to Arabic to Latin traditions &mdash; through translation, commentary, and adaptation &mdash; they transform. Tracking analogical procedures across these traditions requires both historical and linguistic sensitivity. The challenge is to identify genuine structural correspondence without projecting false continuity.</p>
+      </div>
+    </div>
+    <div class="gap-challenge-item">
+      <div class="gap-challenge-num">V</div>
+      <div class="gap-challenge-body">
+        <h3>Making Discovery Teachable</h3>
+        <p>The deepest challenge is also the most practical: how to convert rigorous historical and analogical research into a framework that can be taught, applied, and extended. Bridging the depth of scholarship with the accessibility required for education and Ed-Tech is the ongoing work of NuminaArs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MACTUTOR -->
+<section id="mactutor">
+  <div class="mactutor-inner">
+    <div class="reveal">
+      <p class="mactutor-label">Our Foundation</p>
+      <h2 class="mactutor-heading">Built Alongside the MacTutor Archive</h2>
+    </div>
+    <div class="reveal">
+      <p class="mactutor-text">The <strong>MacTutor History of Mathematics Archive</strong> is one of the world&apos;s leading resources for the history of mathematics &mdash; biographical, encyclopaedic, and authoritative. NuminaArs takes MacTutor as a primary reference and extends in a different direction: not biographical but <strong>relational and procedural</strong>. Where MacTutor asks <em>who</em> discovered something and <em>when</em>, NuminaArs asks <em>how</em> &mdash; through what process of analogical reasoning did the discovery become possible. NuminaArs is conceived as a <strong>parallel and complementary companion</strong> to MacTutor, extending its reach into the procedural, creative, and educational dimensions of mathematical discovery.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SCOPE — black title, creamy boxes, full-line text -->
+<section id="scope">
+  <div class="scope-header reveal">
+    <p class="section-label">Scope</p>
+    <h2 class="section-title">No Boundaries of Time, Place, or Field</h2>
+    <div class="section-rule"></div>
+    <p class="scope-intro">NuminaArs follows analogies wherever they genuinely appear. The project begins with geometry &mdash; the richest domain for visible analogical construction &mdash; and extends outward. The sequence below reflects the current direction of research, not a fixed boundary.</p>
+  </div>
+  <div class="scope-grid reveal">
+    <div class="scope-item"><div class="scope-num">I</div><div class="scope-label">Geometry</div><div class="scope-desc">Construction, proportion, polygon theory &mdash; the primary domain. Classical and non-classical methods across traditions.</div></div>
+    <div class="scope-item"><div class="scope-num">II</div><div class="scope-label">Algebra</div><div class="scope-desc">Symbolic methods and algebraic analogues of geometric constructions. The correspondence between two mathematical languages.</div></div>
+    <div class="scope-item"><div class="scope-num">III</div><div class="scope-label">Computation</div><div class="scope-desc">Algorithmic and formal analysis of analogical procedures. Digital tools to map structural correspondences.</div></div>
+    <div class="scope-item"><div class="scope-num">IV</div><div class="scope-label">Art &amp; Design</div><div class="scope-desc">Geometric construction in Islamic ornament, Renaissance design, and architectural practice as mathematical reasoning.</div></div>
+    <div class="scope-item"><div class="scope-num">V</div><div class="scope-label">Between Disciplines</div><div class="scope-desc">Where geometry meets algebra, where mathematics meets art &mdash; the most productive territory for analogical discovery.</div></div>
+    <div class="scope-item"><div class="scope-num">VI</div><div class="scope-label">Translation &amp; Transmission</div><div class="scope-desc">How mathematical ideas travel across cultures and languages &mdash; Greek to Arabic to Latin &mdash; and what transforms in the journey.</div></div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section id="studies">
+  <div class="container-wide">
+    <div class="reveal">
+      <p class="section-label">Case Studies</p>
+      <h2 class="section-title">Current Research</h2>
+      <div class="section-rule"></div>
+      <p class="studies-intro">Each case study examines a precise moment where analogy served as the instrument of discovery &mdash; where a known structure was transformed to meet a new constraint, generating new mathematical knowledge.</p>
+      <div class="primary-note">
+        <p>NuminaArs begins with geometry as its primary domain &mdash; the field in which analogical construction is most visible and historically richest. The case studies presented here are the first steps of a larger and expanding project. Geometry is the starting point, not the boundary.</p>
+      </div>
+    </div>
+    <div class="study-block reveal">
+      <div class="study-header">
+        <div class="study-number">01</div>
+        <div class="study-meta">
+          <span class="study-tag">Featured Case Study &mdash; Geometry</span>
+          <h3 class="study-title">Heptagon Construction as Meta-Analogy</h3>
+          <p class="study-subtitle">Abu al-Wafa&apos; Buzjani (Baghdad, c. 990) &amp; Albrecht D&uuml;rer (Nuremberg, c. 1525)</p>
+        </div>
+      </div>
+      <div class="study-body">
+        <div class="study-text">
+          <p>The regular heptagon cannot be constructed exactly using compass and straightedge &mdash; a fundamental constraint that forced practitioners across every tradition to find approximate methods. This case study examines how Abu al-Wafa&apos; Buzjani and Albrecht D&uuml;rer, separated by five centuries and two distinct cultural traditions, each arrived at approximate constructions through the same analogical transformation of pentagon methods.</p>
+          <p>Neither construction was derived from first principles. Each was generated by carrying the logic of a known, simpler construction &mdash; the pentagon &mdash; across into the more demanding problem of the heptagon. The known method provides the framework; the new constraint transforms it. This is analogy as method: a precise transfer of relational structure from the solved to the unsolved.</p>
+          <p>The two constructions follow the same generative architecture &mdash; initial configuration, derivation of a new measure, its reuse as a generative element, and iterative completion around the circle &mdash; without any historical contact between the two practitioners.</p>
+          <div class="study-highlight">
+            <div class="study-highlight-label">Meta-Analogy</div>
+            <p>The correspondence is not between the constructions themselves but between the analogical procedures that generated them. Two scholars, working independently under the same constraint, reached for the same kind of transformation. This recurring architecture of mathematical reasoning is what NuminaArs calls meta-analogy.</p>
+          </div>
+        </div>
+        <div class="study-diagram">
+          <div class="diagram-title">Analogical Structure</div>
+          <div class="a-chain">
+            <div class="a-node"><div class="a-node-name">Source</div><div class="a-node-desc">Pentagon construction &mdash; exact, known, classical. The golden section provides the fundamental measure.</div></div>
+            <div class="a-arrow">&darr; &nbsp; transfer of method</div>
+            <div class="a-node"><div class="a-node-name">Constraint</div><div class="a-node-desc">Heptagon cannot be constructed exactly. A new measure must be derived by analogical means.</div></div>
+            <div class="a-arrow">&darr; &nbsp; analogical generation</div>
+            <div class="a-node"><div class="a-node-name">Abu al-Wafa&apos; (c. 990)</div><div class="a-node-desc">Baghdad. Derives approximate side length through transformation of prior polygon logic.</div></div>
+            <div class="a-node"><div class="a-node-name">Albrecht D&uuml;rer (c. 1525)</div><div class="a-node-desc">Nuremberg. Independent derivation five centuries later. Same procedural architecture, different execution.</div></div>
+            <div class="a-arrow">&darr; &nbsp; meta-analogy</div>
+            <div class="a-bridge"><div class="a-bridge-label">The correspondence</div><div class="a-bridge-desc">Both procedures follow the same generative logic &mdash; not because one derived from the other, but because the problem imposed the same structure on both.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section id="audience">
+  <div class="container-wide">
+    <div class="reveal">
+      <p class="section-label">Who It Serves</p>
+      <h2 class="section-title">Impact Across Eight Communities</h2>
+      <div class="section-rule"></div>
+      <p class="audience-intro">NuminaArs is designed as a Re-Tech and Ed-Tech innovation with broad reach. Its impact extends across learners, educators, researchers, and practitioners &mdash; wherever analogical thinking, mathematical discovery, and creative problem-solving intersect.</p>
+    </div>
+    <div class="audience-grid reveal">
+      <div class="audience-card"><div class="audience-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><h3>Students &amp; Learners</h3><p>A new way into mathematics &mdash; through the history of discovery and the logic of problem-solving. Builds transferable analogical thinking skills.</p></div>
+      <div class="audience-card"><div class="audience-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h3>Educators &amp; Teachers</h3><p>A resource for teaching mathematical thinking, not just content. Case studies bring the history of discovery into the classroom in an accessible, structured way.</p></div>
+      <div class="audience-card"><div class="audience-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><h3>Historians of Mathematics</h3><p>A framework for analysing the transmission and transformation of mathematical ideas across traditions &mdash; focused on procedure and reasoning, not biography alone.</p></div>
+      <div class="audience-card"><div class="audience-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div><h3>Mathematicians</h3><p>An approach to structure and abstraction through historical cases &mdash; showing how mathematical knowledge functions as a generative resource across time and tradition.</p></div>
+      <div class="audience-card"><div class="audience-icon"><svg viewBox="0 0 24 24"><path d="M2 20h20M4 20V10l8-6 8 6v10M10 20v-6h4v6"/></svg></div><h3>Artists &amp; Architects</h3><p>Geometric construction is not only a mathematical procedure &mdash; it is a creative act. NuminaArs examines the methods behind Islamic ornament, Renaissance design, and architectural geometry.</p></div>
+      <div class="audience-card"><div class="audience-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h3>Computer Scientists &amp; AI Researchers</h3><p>Analogy is central to AI and knowledge representation. NuminaArs offers a precise, historically grounded model of how analogical reasoning functions in formal domains.</p></div>
+      <div class="audience-card"><div class="audience-icon"><svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div><h3>Ed-Tech Developers</h3><p>A framework for building tools that teach analogical reasoning and creative problem-solving &mdash; skills central to mathematical literacy in the digital age.</p></div>
+      <div class="audience-card"><div class="audience-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><h3>Innovation &amp; Funding Partners</h3><p>NuminaArs addresses a clear gap in mathematical education and research &mdash; offering a scalable, interdisciplinary, and culturally inclusive framework with strong potential for social and educational impact.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION -->
+<section id="vision">
+  <div class="container-wide">
+    <div class="vision-grid">
+      <div class="reveal">
+        <p class="section-label">Future Direction</p>
+        <h2 class="section-title">Where NuminaArs Is Going</h2>
+        <div class="section-rule"></div>
+        <p class="vision-text">The immediate work is the development of rigorously analysed case studies &mdash; forming an empirical foundation of documented instances of analogical discovery across mathematical traditions.</p>
+        <p class="vision-text">The longer-term aim is to build a systematic and applicable framework: a structured method for identifying, teaching, and extending analogical reasoning &mdash; useful in education, research, and innovation contexts.</p>
+        <p class="vision-text">NuminaArs is conceived as a growing, open, collaborative project. New case studies, new traditions, and new disciplines will be added as research develops. The community of contributors is as important as the content itself.</p>
+      </div>
+      <div class="vision-steps reveal">
+        <div class="vision-step"><div class="vision-step-num">I</div><div class="vision-step-text"><strong>Case Study Library</strong>A growing body of rigorously analysed instances of analogical discovery &mdash; spanning geometry, algebra, computation, art, and beyond.</div></div>
+        <div class="vision-step"><div class="vision-step-num">II</div><div class="vision-step-text"><strong>Analytical Framework</strong>A systematic, teachable method for identifying and comparing analogical procedures &mdash; the recurring generative architectures of mathematical reasoning.</div></div>
+        <div class="vision-step"><div class="vision-step-num">III</div><div class="vision-step-text"><strong>Ed-Tech Application</strong>Development of educational tools that make analogical thinking an explicit, learnable skill &mdash; applicable across mathematical curricula and beyond.</div></div>
+        <div class="vision-step"><div class="vision-step-num">IV</div><div class="vision-step-text"><strong>Computational Extension</strong>Exploration of whether the analytical framework can be formalised as a searchable database or modelling tool &mdash; identifying structural correspondences across the full historical record.</div></div>
+        <div class="vision-step"><div class="vision-step-num">V</div><div class="vision-step-text"><strong>Global &amp; Interdisciplinary Reach</strong>Extension into ethnomathematics, indigenous mathematical structures, and the full diversity of human mathematical traditions &mdash; making discovery inclusive and universal.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section id="community">
+  <div class="container-wide">
+    <div class="reveal">
+      <p class="section-label">Open &amp; Collaborative</p>
+      <h2 class="section-title">A Project in Progress</h2>
+      <div class="section-rule"></div>
+      <p class="community-intro">NuminaArs is not a closed archive. It is a growing, open project &mdash; sustained by workshops, seminars, and the contributions of researchers, educators, and practitioners across disciplines. New case studies, new traditions, and new ideas are always welcome.</p>
+    </div>
+    <div class="community-grid reveal">
+      <div class="community-item"><h3>Workshops &amp; Seminars</h3><p>Regular events exploring specific case studies, methods, and cross-disciplinary connections &mdash; open to researchers, educators, students, and practitioners at all levels.</p></div>
+      <div class="community-item"><h3>Open Case Study Contributions</h3><p>The ocean of mathematical history holds countless undiscovered instances of analogical reasoning. Contributions from researchers in any tradition or discipline are welcomed and rigorously reviewed.</p></div>
+      <div class="community-item"><h3>Critical Discussion</h3><p>NuminaArs invites challenge, critique, and dialogue. The project is strengthened by disagreement as much as by agreement. Questions about method, scope, and interpretation are central to its development.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container-wide">
+    <div class="reveal">
+      <p class="section-label">About</p>
+      <h2 class="section-title">The Project &amp; Its Status</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="about-grid reveal">
+      <div class="about-text">
+        <p>NuminaArs is an independent research and innovation project in the history, philosophy, and education of mathematics. It investigates analogy as a method of discovery and problem-solving &mdash; examining how known procedures are transformed to meet new constraints, generating new mathematical knowledge.</p>
+        <p>The project is conceived as a parallel and complementary companion to the MacTutor History of Mathematics Archive &mdash; extending MacTutor&apos;s encyclopaedic reach into the procedural, creative, and educational dimensions of mathematical discovery.</p>
+        <p>NuminaArs takes its name from the Latin <em>numen</em> (the animating principle, the act of willing) and <em>ars</em> (art, method, craft) &mdash; the idea of a skilled, intentional act of mathematical reasoning.</p>
+        <p>The project bridges academia and research communities, promoting an ESTEAM approach &mdash; Entrepreneurship, Science, Technology, Engineering, Arts, Mathematics &mdash; to foster creativity, innovation, and social impact through mathematics.</p>
+      </div>
+      <div class="about-text">
+        <p>This project is conceived and directed by <strong>Parisa Kharazmi</strong>, who applies multidisciplinary expertise spanning numerical analysis, mathematical analogies, geometric patterns, scientific epistemology, history of mathematics, and digital innovation to address complex challenges.</p>
+        <p>By combining analytical and creative thinking, the project explores the intersection of mathematics with cultural, historical, and educational contexts &mdash; recognising that diverse perspectives drive mathematical understanding and innovation.</p>
+        <p>An active interest in ethnomathematics, AI philosophy, and mathematical structures in indigenous knowledge underpins a commitment to making mathematics accessible, creative, and relevant for all learners. By bridging academia and research communities, NuminaArs promotes ESTEAM to foster technology, creativity, and social impact through a multidisciplinary approach.</p>
+      </div>
+    </div>
+    <div class="about-notice reveal">
+      <div class="about-notice-label">Project Status</div>
+      <p>NuminaArs is in early development. The case studies presented here are drawn from ongoing research. Critical engagement, questions, and collaboration are welcome.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <a href="#" class="footer-logo">NuminaArs</a>
+      <p class="footer-tag">Re-Tech &nbsp;&middot;&nbsp; Ed-Tech &nbsp;&middot;&nbsp; Cul-Tech &nbsp;&middot;&nbsp; Analogy as a Method of Discovery and Innovation in Mathematics</p>
+    </div>
+    <div class="footer-right">
+      <span class="footer-name">Parisa Kharazmi</span>
+      <span class="footer-role">Researcher. ESTEAM Innovator.</span>
+      <div class="footer-links">
+        <a href="https://sites.google.com/view/parisa-kharazmi/home" target="_blank" class="footer-link">Academic Profile</a>
+        <span class="footer-link-sep">&middot;</span>
+        <a href="https://github.com/Parisa-Kharazmi/PAKH" target="_blank" class="footer-link">GitHub</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
